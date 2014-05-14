@@ -7,7 +7,7 @@
 # Created Time: 2014年05月08日 星期四 20时22分07秒
 #########################################################################
 
-import redisHelper.RedisHelper import RedisHelper
+from redisHelper.RedisHelper import RedisHelper
 
 def saveCoauthorShip(authors):
     redisHelper = RedisHelper()
@@ -15,4 +15,7 @@ def saveCoauthorShip(authors):
         for au in authors:
             for coau in authors:
                 if au != coau:
-                    redisHelper.addcoauhtorship(au, coau)
+                    try:
+                        redisHelper.addCoauthorship(au, coau)
+                    except:
+                        print 'add error: ' + str(au) + '==' + str(coau)

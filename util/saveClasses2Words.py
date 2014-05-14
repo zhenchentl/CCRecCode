@@ -7,6 +7,8 @@
 # Created Time: 2014年05月08日 星期四 20时26分16秒
 #########################################################################
 
+import sys
+sys.path.append("..")
 from redisHelper.RedisHelper import RedisHelper
 
 redisHelper = RedisHelper()

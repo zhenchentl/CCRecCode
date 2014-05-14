@@ -5,14 +5,14 @@ Created on 2014-04-26
 Description:对data mining的dblp数据进行分词，获取语料
 @author: zhenchentl
 '''
+import sys
+sys.path.append("..")
 from xml.sax import handler, make_parser
 from redisHelper.RedisHelper import RedisHelper
-from util.classify import classifyAuthors
+from util.classifyAuthors import classifyAuthors
 from util.saveCoauthorShip import saveCoauthorShip
 from util.formatwords import formatwords
 import time
-
-DBLP_XML_PATH = '/home/zhenchentl/dblp/dblp.xml'
 
 paperTag = ('article','inproceedings','proceedings','book',
         'incollection','phdthesis','mastersthesis','www')
@@ -52,7 +52,7 @@ class dblpHandler(handler.ContentHandler):
         if name == 'title' and self.isPaperTag:
             self.isTitleTag = True
             self.count += 1
-            if self.count%10000:
+            if self.count%1000 == 0:
                 print self.count
         if name == 'author' and self.isPaperTag:
             self.isAuthor = True
@@ -75,7 +75,7 @@ class dblpHandler(handler.ContentHandler):
             self.isAuthor = False
 
 def getConfList():
-    file_input = open('/home/zhenchentl/dblp/conflist.txt')
+    file_input = open(FILE_INPUT_PATH_CONFLIST)
     ConfList = file_input.readline().strip().split(',')
     file_input.close()
     return ConfList

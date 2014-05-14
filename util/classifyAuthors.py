@@ -7,11 +7,11 @@
 # Created Time: 2014年05月08日 星期四 20时16分12秒
 #########################################################################
 
-import redisHelper.RedisHelper import RedisHelper
+from redisHelper.RedisHelper import RedisHelper
 
 def classifyAuthors(authors, title):
     redisHelper = RedisHelper()
-    for word in title:
+    for word in title.split():
         classID = redisHelper.getClassIDbyWord(word)
         if classID != None:
             for au in authors:

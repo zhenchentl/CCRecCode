@@ -5,10 +5,13 @@ Created on 2014-04-26
 Description:对data mining的dblp数据进行分词，获取语料
 @author: zhenchentl
 '''
+import sys
+sys.path.append('..')
 from xml.sax import handler, make_parser
+from util import Params.*
+
 import time
 
-DBLP_XML_PATH = '/home/zhenchentl/dblp/dblp.xml'
 
 paperTag = ('article','inproceedings','proceedings','book',
         'incollection','phdthesis','mastersthesis','www')
@@ -63,14 +66,14 @@ class dblpHandler(handler.ContentHandler):
 
 def saveSegmentedWords(segmentdWords):
 #     try:
-    file_output = open('/home/zhenchentl/dblp/segmentwords.txt', 'a')
+    file_output = open(FILE_OUTPUT_PATH_SEGMENTWORDS, 'a')
     file_output.write(segmentdWords)
     file_output.close()
 #     except:
 #         print 'write title error!'
 
 def getConfList():
-    file_input = open('/home/zhenchentl/dblp/conflist.txt')
+    file_input = open(FILE_INPUT_PATH_CONFLIST)
     ConfList = file_input.readline().strip().split(',')
     file_input.close()
     return ConfList
