@@ -19,7 +19,8 @@ TargetNodesNum = 100
 
 FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
 
-RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
+#RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
+RECOM_LIST_PATH = FILE_DIR + 'recom_list_dm_23_rwr.txt'
 
 DBLP_XML_PATH = FILE_DIR + 'dblp/dblp.xml'
 
