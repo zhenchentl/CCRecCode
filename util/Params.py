@@ -17,7 +17,8 @@ TargetNodesMinDegree = 30
 
 TargetNodesNum = 100
 
-FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
+#FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
+FILE_DIR = '/home/vicy/cz/tsrecom/'
 
 #RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
 RECOM_LIST_PATH = FILE_DIR + 'recom_list_dm_23_rwr.txt'
