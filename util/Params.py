@@ -11,11 +11,15 @@ from pygraph.classes.digraph import digraph
 
 RecomTopN = 200
 
+ReconListSize= 30
+
 TargetNodesMinDegree = 30
 
 TargetNodesNum = 100
 
 FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
+
+RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
 
 DBLP_XML_PATH = FILE_DIR + 'dblp/dblp.xml'
 
