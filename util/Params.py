@@ -17,11 +17,11 @@ TargetNodesMinDegree = 30
 
 TargetNodesNum = 100
 
-#FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
-FILE_DIR = '/home/vicy/cz/'
+FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
+#FILE_DIR = '/home/vicy/cz/'
 
-#RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
-RECOM_LIST_PATH = FILE_DIR + 'dblp/recom_list_dm_23_rwr.txt'
+RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
+RECOM_LIST_PATH_RWR = FILE_DIR + 'recom_list_dm_25_2011_rwr.txt'
 
 DBLP_XML_PATH = FILE_DIR + 'dblp/dblp.xml'
 
@@ -32,6 +32,8 @@ FILE_INPUT_PATH_CONFLIST = FILE_DIR + 'dblp/conflist.txt'
 FILE_PATH_TARGETNODES = FILE_DIR + 'dblp/targetnodes.txt'
 
 FILE_PATH_RECOMLIST = FILE_DIR + 'recom_list.txt'
+
+FILE_PATH_RECOMLIST_CN = FILE_DIR + 'recom_list_cn.txt'
 
 def getRankTo(gra, from_node, to_node, s):
     if s.has_key(from_node + ':' + to_node):

@@ -12,6 +12,7 @@ from redisHelper.RedisHelper import RedisHelper
 from util.classifyAuthors import classifyAuthors
 from util.saveCoauthorShip import saveCoauthorShip
 from util.formatwords import formatwords
+from util.Params import *
 import time
 
 paperTag = ('article','inproceedings','proceedings','book',
@@ -25,8 +26,10 @@ class dblpHandler(handler.ContentHandler):
     def __init__(self):
         self.isPaperTag = False
         self.isTitleTag = False
+        self.isYear = False
         self.isAuthor = False
         self.authors = []
+        self.year = 0
         self.title = ''
         self.count = 0
         self.confList = getConfList()
@@ -56,13 +59,15 @@ class dblpHandler(handler.ContentHandler):
                 print self.count
         if name == 'author' and self.isPaperTag:
             self.isAuthor = True
+        if name == 'year' and self.isPaperTag:
+            self.isYear = True
     
     def endElement(self, name):
         if name in paperTag:
             if self.isPaperTag:
                 self.isPaperTag = False
                 classifyAuthors(self.authors, self.title)
-                saveCoauthorShip(self.authors)
+                saveCoauthorShip(self.authors, self.year)
                 self.authors = []
                 self.title = ''
     
@@ -73,6 +78,9 @@ class dblpHandler(handler.ContentHandler):
         if self.isAuthor:
             self.authors.append(content)
             self.isAuthor = False
+        if self.isYear:
+            self.year = int(content)
+            self.isYear = False
 
 def getConfList():
     file_input = open(FILE_INPUT_PATH_CONFLIST)

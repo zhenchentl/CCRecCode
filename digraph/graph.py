@@ -12,9 +12,10 @@ from redisHelper.RedisHelper import RedisHelper
 from pygraph.classes.digraph import digraph
 
 class DigraphByClass:
-    def __init__(self):
+    def __init__(self, splitYear = 2011):
         self.mDigraph = digraph()
         self.mRDHelper = RedisHelper()
+        self.splitYear = splitYear
 
     def getDigraph(self, classID):
         authors = self.mRDHelper.getAuthorsByClassID(classID)
@@ -25,9 +26,30 @@ class DigraphByClass:
         for author in authors:
             coAuthors = self.mRDHelper.getCoauthors(author)
             for coauthor in coAuthors:
-                if self.mDigraph.has_node(coauthor) and \
-                        not self.mDigraph.has_edge((author, coauthor)):
-                    self.mDigraph.add_edge((author, coauthor))
+                years = list(self.mRDHelper.getCoauthorTimes(author, coauthor))
+                if True in [int(year) <= self.splitYear for year in years]:
+                    if self.mDigraph.has_node(coauthor) and \
+                            not self.mDigraph.has_edge((author, coauthor)):
+                        self.mDigraph.add_edge((author, coauthor))
             coAuthors = []
         authors = []
+        print 'edges num:'+str(len(self.mDigraph.edges()))
+        return self.mDigraph
+    
+    def getDigraphAll(self):
+        authors = self.mRDHelper.getAuthors()
+        for author in authors:
+            if not self.mDigraph.has_node(author):
+                self.mDigraph.add_node(author)
+        for author in authors:
+            coAuthors = self.mRDHelper.getCoauthors(author)
+            for coauthor in coAuthors:
+                years = list(self.mRDHelper.getCoauthorTimes(author, coauthor))
+                if True in [int(year) <= self.splitYear for year in years]:
+                    if self.mDigraph.has_node(coauthor) and \
+                            not self.mDigraph.has_edge((author, coauthor)):
+                        self.mDigraph.add_edge((author, coauthor))
+            coAuthors = []
+        authors = []
+        print 'edges num:'+str(len(self.mDigraph.edges()))
         return self.mDigraph

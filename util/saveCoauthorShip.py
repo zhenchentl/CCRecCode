@@ -9,13 +9,13 @@
 
 from redisHelper.RedisHelper import RedisHelper
 
-def saveCoauthorShip(authors):
+def saveCoauthorShip(authors,year):
     redisHelper = RedisHelper()
     if len(authors) > 1:
         for au in authors:
             for coau in authors:
                 if au != coau:
                     try:
-                        redisHelper.addCoauthorship(au, coau)
+                        redisHelper.addCoauthorship(au, coau, year)
                     except:
                         print 'add error: ' + str(au) + '==' + str(coau)

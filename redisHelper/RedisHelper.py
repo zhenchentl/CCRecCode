@@ -15,6 +15,7 @@ DB_CLASS_AUTHORS = 2
 DB_AUTHOR_CLASSES = 3
 DB_CLASS_AUTHOR_NUM = 4
 DB_AUTHORS_RANK_VEC = 5
+DB_COAUTHOR_TIME = 6
 class RedisHelper:
 
     def __init__(self):
@@ -36,11 +37,18 @@ class RedisHelper:
         '''key-->list:存储学者的特征向量。author-->[rank,rank,rank...]'''
         self.authorsRankVec = redis.StrictRedis('127.0.0.1', port = 6379, \
                 db = DB_AUTHORS_RANK_VEC)
+        '''key-->set:存储学者的合作时间,可能有多个时间。au1:au2-->year'''
+        self.coauthorTime = redis.StrictRedis('127.0.0.1', port = 6379, \
+                db = DB_COAUTHOR_TIME)
+
     def addClass2Words(self, word, classID):
         '''添加classID和单词的键值对'''
         return self.wordClassesDB.set(word, classID)
-
-    def addCoauthorship(self, author, coauthor):
+    def getCoauthorTimes(self, author, coauthor):
+        return self.coauthorTime.smembers(author + ':' + coauthor)
+    def addCoauthorship(self, author, coauthor, time):
+        self.coauthorTime.sadd(author + ':' + coauthor, time)
+        self.coauthorTime.sadd(coauthor + ':' + author, time)
         '''添加论文合作关系key-->set'''
         return self.coauthorShipDB.sadd(author, coauthor)
 

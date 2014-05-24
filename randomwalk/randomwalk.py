@@ -11,7 +11,7 @@ import sys
 sys.path.append('..')
 from digraph.graph import DigraphByClass
 from operator import itemgetter
-from util import Param.*
+from util.Params import *
 
 def randomwalk(graph, damping_factor = 0.85, max_iterations = 100,\
         min_delta = 0.000001):
