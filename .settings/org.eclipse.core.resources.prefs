@@ -11,5 +11,6 @@ encoding//util/saveCoauthorShip.py=utf-8
 encoding/commonNeighbors.py=utf-8
 encoding/main.py=utf-8
 encoding/performance.py=utf-8
+encoding/performance_acrec.py=utf-8
 encoding/performance_cn.py=utf-8
 encoding/performance_rwr.py=utf-8

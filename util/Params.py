@@ -22,6 +22,7 @@ FILE_DIR = '/home/zhenchentl/workspace/tsrecom/'
 
 RECOM_LIST_PATH = FILE_DIR + 'recom_list_14.txt'
 RECOM_LIST_PATH_RWR = FILE_DIR + 'recom_list_dm_25_2011_rwr.txt'
+RECOM_LIST_PATH_ACREC = FILE_DIR + 'recom_list_dm_200_30_2011_acrec.txt'
 
 DBLP_XML_PATH = FILE_DIR + 'dblp/dblp.xml'
 
